@@ -1,0 +1,13 @@
+import { createClient } from '@supabase/supabase-js';
+
+// Singleton Supabase client for browser/server usage.
+// Credentials are pre-populated in .env and the host environment.
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL ?? '';
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+  process.env.SUPABASE_ANON_KEY ?? '';
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: { persistSession: false },
+});
